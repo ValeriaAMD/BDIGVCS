@@ -23,7 +23,7 @@ if ($validador->fails()) {
 $credenciales = $request->only(['email', 'password']);
 
         if (!$token = JWTAuth::customClaims([
-            'test' => 'Vale Hdz', 
+            'test' => 'LBTF', 
             'permisos' => [
                 'crear_usuario',
                 'consultar_usuario',

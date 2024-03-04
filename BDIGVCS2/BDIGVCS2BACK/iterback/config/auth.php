@@ -14,9 +14,10 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api', 
         'passwords' => 'users',
     ],
+    /*se cambia el web por api
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +41,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'jwt', // Use JWT as the driver
+            'provider' => 'users', // Use the users provider
+        ],
     ],
+    /*se agregan las linaeas del driver para api
 
     /*
     |--------------------------------------------------------------------------
