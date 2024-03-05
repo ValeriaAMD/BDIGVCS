@@ -8,6 +8,6 @@ const Entrar = async (box:IUser)=>{
     return await axios.post(urlbase+endpoint,box)
 }
 
-export const AutorServicio={
+export const UserServicio={
     Entrar
 }
