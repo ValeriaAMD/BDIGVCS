@@ -15,11 +15,9 @@ const opcione: React.FC = () => {
         </Container>
       </Navbar>
       <br />
-      <Button variant="outline-danger">
-        <img 
-        src={salir}
-        />
-        </Button>{' '}
+      <Button variant="outline-danger" className="position-absolute start-0 m-2 p-1" >
+        <img src={salir} alt="Salir" style={{ width: '20px', height: '20px' }} />
+      </Button>
 
     </Container>
   );
