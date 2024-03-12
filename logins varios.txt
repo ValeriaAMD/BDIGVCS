@@ -145,3 +145,77 @@ export const Login = () => {
   );
 }
 
+
+
+
+<Container>
+      <Navbar className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="#home">
+            <img
+              alt=""
+              src="../Components/bio vision-logo.jpg"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
+            React Bootstrap
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+    <Navbar className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
+    <Navbar.Brand href="#home">Bio vision</Navbar.Brand>
+    </Navbar>
+    <Container>
+    <Carousel>
+      <Carousel.Item>
+      <img
+          className="d-block w-100"
+          src="bio vision-logo.jpg"
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+      <Image src="C:\Users\caroc\OneDrive\Documentos\BDIGVCS\BDIGVCS2\BDIGVCS2FRONT\interfaznn\src\interfaznn\Components\bio vision-logo.jpg" fluid />
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+      <img
+          className="d-block w-100"
+          src="IMG_20240306_130108.jpg"
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+    </Container>
+    <Image src="C:\Users\caroc\OneDrive\Documentos\BDIGVCS\BDIGVCS2\BDIGVCS2FRONT\interfaznn\src\interfaznn\Components\bio vision-logo.jpg" fluid />
+      <FloatingLabel controlId="email" label="Correo electrónico" className="mb-3">
+        <Form.Control
+          type="email"
+          value={credenciales.email}
+          onChange={event => setCredenciales({ ...credenciales, email: event.target.value })}
+        />
+      </FloatingLabel>
+      <FloatingLabel controlId="password" label="Contraseña" className="mb-3">
+        <Form.Control
+          type="password"
+          value={credenciales.password}
+          onChange={event => setCredenciales({ ...credenciales, password: event.target.value })}
+        />
+      </FloatingLabel>
+      <Button variant="outline-primary" onClick={handleLogin} className="enviar">Iniciar sesión</Button>
+    </Container>
+    
