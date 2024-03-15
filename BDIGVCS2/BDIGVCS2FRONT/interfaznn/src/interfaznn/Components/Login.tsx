@@ -36,7 +36,7 @@ export const Login = () => {
   return (
     <Container>
       <br />
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar style={{backgroundColor:'#032634'}} data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="#home">Bio Vision</Navbar.Brand>
         </Container>
