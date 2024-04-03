@@ -1,73 +1,87 @@
-import React from 'react';
-import { Container} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import casa from '../imagenes/casa.png'
-import eclipse from '../imagenes/eclipse .png'
-import temperatura from '../imagenes/temperatura.png'
-import humedad from '../imagenes/humedad .png'
-import play from '../imagenes/play.png'
-import Form from 'react-bootstrap/Form'
+import casa from '../imagenes/casa.png';
+import eclipse from '../imagenes/eclipse .png';
+import temperatura from '../imagenes/temperatura.png';
+import humedad from '../imagenes/humedad .png';
+import play from '../imagenes/play.png';
+import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
-const vegetativa: React.FC = () => {
+function App() {
+  //temperatura
+  const [temperature, setTemperature] = useState(28); // Estado para mantener el valor del número
+
+  const increaseTemperature = () => {
+    setTemperature(prevTemperature => prevTemperature + 1); // Incrementa la temperatura en 1
+  };
+
+  const decreaseTemperature = () => {
+    setTemperature(prevTemperature => prevTemperature - 1); // Decrementa la temperatura en 1
+  };
+
+  //humedad
+  const [humedity, setHumedity] = useState(70); // Estado para mantener el valor del número
+
+  const increaseHumedity = () => {
+    setHumedity(prevHumedity => prevHumedity + 1); // Incrementa la humedad en 1
+  };
+
+  const decreaseHumedity = () => {
+    setHumedity(prevHumedity => prevHumedity - 1); // Decrementa la humedad en 1
+  };
+
   return (
     <Container>
-        <br />
-      <Navbar style={{backgroundColor:'#032634'}}data-bs-theme="dark">
+      <br />
+      <Navbar style={{ backgroundColor: '#032634' }} data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home" >Bio Vision</Navbar.Brand>
+          <Navbar.Brand href="#home">BioSystem</Navbar.Brand>
         </Container>
       </Navbar>
-      
-      <div
-      className="modal show"
-      style={{ display: 'block', position: 'initial'}}
-    >
-      <Modal.Dialog >
-        <Modal.Header  style={{backgroundColor:'#032634'}}>
-        <Form.Check 
-        type="switch"
-        id="modo-oscuro"
-        />
-        <img src={eclipse } alt="Modo oscuro" style={{ width: '20px', height: '20px' }} />
-        </Modal.Header>
-        <Modal.Body style={{backgroundColor:'#032634'}}>
-        <br />
-        <FloatingLabel controlId="floatingInputGrid" label="0°" className="position-absolute start-0 m-1 p-1">
-          <Form.Control type="email" placeholder="name@example.com" />
-        </FloatingLabel>
-        <br />
-        <Button variant="secondary" >+</Button>
-        <Button variant="secondary">-</Button>
-        <img src={temperatura } alt="temperatura" style={{ width: '20px', height: '20px' }} />
-        <br />
-        <br />
-        <FloatingLabel controlId="floatingInputGrid" label="0%" className="position-absolute start-0 m-1 p-1">
-          <Form.Control type="email" placeholder="name@example.com" />
-        </FloatingLabel>
-        <br />
-        <Button variant="secondary">+</Button>
-        <Button variant="secondary">-</Button>
-        <img src={humedad } alt="humedad" style={{ width: '20px', height: '20px' }} />
-        <br />
-        <br />
-        </Modal.Body>
 
-        <Modal.Footer style={{backgroundColor:'#032634'}}>
-        <Button variant="outline-info" className="position-absolute top-0 end-0 m-2 p-1"  >
-        <img src={casa} alt="casa" style={{ width: '20px', height: '20px' }} />
-      </Button>
-      <Button variant="outline-success"  >
-        <img src={play} alt="play" style={{ width: '20px', height: '20px' }} />
-      </Button>
-        </Modal.Footer>
-        
-      </Modal.Dialog>
-    </div>
+      <div className="modal" style={{ display: 'block', position: 'initial' }}>
+        <Modal.Dialog style={{ marginTop: '10vh' }}>
+          <Modal.Header style={{ backgroundColor: '#032634' }}>
+            <Form.Check type="switch" id="modo-oscuro" />
+            <img src={eclipse} alt="Modo oscuro" style={{ width: '20px', height: '20px' }} /> {/*Boton de modo oscuro */}
+          </Modal.Header>
+          <Modal.Body style={{ backgroundColor: '#032634' }}>
+            <br />
+            <div>
+              <label className="temperature-label">{temperature}°</label> {/* Etiqueta que muestra el valor del número */}
+              <br />
+              <Button variant="secondary" onClick={increaseTemperature}>+</Button> {/* Botón para aumentar el número */}
+              <Button variant="secondary" onClick={decreaseTemperature}>-</Button> {/* Botón para disminuir el número */}
+            </div>
+            <img src={temperatura} alt="temperatura" style={{ width: '20px', height: '20px' }} />
+            <br />
+            <br />
+            <div>
+              <label className="temperature-label">{humedity}%</label> {/* Etiqueta que muestra el valor del número */}
+              <br />
+              <Button variant="secondary" onClick={increaseHumedity}>+</Button> {/* Botón para aumentar el número */}
+              <Button variant="secondary" onClick={decreaseHumedity}>-</Button> {/* Botón para disminuir el número */}
+            </div>
+            <img src={humedad} alt="humedad" style={{ width: '20px', height: '20px' }} />
+            <br />
+            <br />
+          </Modal.Body>
+
+          <Modal.Footer style={{ backgroundColor: '#032634' }}>
+            <Button variant="outline-info" className="position-absolute top-0 end-0 m-2 p-1">
+              <img src={casa} alt="casa" style={{ width: '20px', height: '20px' }} /> {/*Boton para volver al menu principal */}
+            </Button>
+            <Button variant="outline-success">
+              <img src={play} alt="play" style={{ width: '20px', height: '20px' }} /> {/*Boton para aplicar los cambios */}
+            </Button>
+          </Modal.Footer>
+        </Modal.Dialog>
+      </div>
     </Container>
   );
-};
+}
 
-export default vegetativa;
+export default App;

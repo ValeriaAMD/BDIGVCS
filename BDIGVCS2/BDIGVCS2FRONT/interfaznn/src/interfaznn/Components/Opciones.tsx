@@ -7,14 +7,16 @@ import eclipse from '../imagenes/eclipse .png'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const opcione: React.FC = () => {
   return (
+    <Router>
     <Container>
         <br />
       <Navbar style={{backgroundColor:'#032634'}}data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home" >Bio Vision</Navbar.Brand>
+          <Navbar.Brand href="#home" >BioSystem</Navbar.Brand>
         </Container>
       </Navbar>
       
@@ -32,17 +34,18 @@ const opcione: React.FC = () => {
         </Modal.Header>
         <Modal.Body style={{backgroundColor:'#032634'}}>
         <br />
-        
-            <Button variant="secondary">F.Vegetativa</Button>
-          
+         <Link to="../Components/Vegetativa">
+           <Button variant="secondary">Fase Vegetativa</Button>
+         </Link>
+        <br />
+        <br />
+        <Link to="../Components/Reproductiva">
+          <Button variant="dark">Fase Reproductiva</Button>
+        </Link>
         <br />
         <br />
 
-        <Button variant="secondary">F.Reproductiva</Button>
-        <br />
-        <br />
-
-        <Button variant="secondary">Monitoreo</Button>
+        <Button variant="warning">Monitoreo</Button>
         <br />
         <br />
         </Modal.Body>
@@ -55,6 +58,7 @@ const opcione: React.FC = () => {
       </Modal.Dialog>
     </div>
     </Container>
+    </Router>
   );
 };
 

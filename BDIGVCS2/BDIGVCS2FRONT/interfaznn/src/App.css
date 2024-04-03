@@ -13,6 +13,12 @@
   }
 }
 
+.temperature-label {
+  color: white; /* Cambia el color del texto a blanco */
+  padding: 5px; /* Agrega relleno para mejorar la apariencia */
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

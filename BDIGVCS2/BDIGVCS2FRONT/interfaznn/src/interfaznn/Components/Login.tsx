@@ -8,7 +8,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import bio_vision_logo from '../imagenes/bio_vision_logo.jpg';
 import grow from '../imagenes/grow.jpg';
 import TecNM_logo from '../imagenes/TecNM_logo.png';
-
+import LabBioFun from '../imagenes/LabBioFun.png'
 
 export const Login = () => {
   const { setEmail, setPassword } = useContext(AuthContext); // Obtener funciones de contexto de autenticación
@@ -38,7 +38,7 @@ export const Login = () => {
       <br />
       <Navbar style={{backgroundColor:'#032634'}} data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Bio Vision</Navbar.Brand>
+          <Navbar.Brand href="#home">BioSystem</Navbar.Brand>
         </Container>
       </Navbar>
       <br />
@@ -46,7 +46,7 @@ export const Login = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={bio_vision_logo}
+            src={LabBioFun}
             alt="First slide"
           />
         </Carousel.Item>
@@ -66,9 +66,9 @@ export const Login = () => {
         </Carousel.Item>
       </Carousel>
       <br />
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar style={{backgroundColor:'#032634'}} bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Login</Navbar.Brand>
+          <Navbar.Brand  href="#home">Login</Navbar.Brand>
         </Container>
       </Navbar>
       <br />
