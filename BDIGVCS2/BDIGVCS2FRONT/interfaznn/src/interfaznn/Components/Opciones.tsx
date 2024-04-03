@@ -2,16 +2,15 @@ import React from 'react';
 import { Container} from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import salir from '../imagenes/salir.png'
+import sali from '../imagenes/sali.png'
 import eclipse from '../imagenes/eclipse .png'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 const opcione: React.FC = () => {
   return (
-    <Router>
+    
     <Container>
         <br />
       <Navbar style={{backgroundColor:'#032634'}}data-bs-theme="dark">
@@ -34,12 +33,12 @@ const opcione: React.FC = () => {
         </Modal.Header>
         <Modal.Body style={{backgroundColor:'#032634'}}>
         <br />
-         <Link to="../Components/Vegetativa">
+         <Link to="/fase_vegetativa">
            <Button variant="secondary">Fase Vegetativa</Button>
          </Link>
         <br />
         <br />
-        <Link to="../Components/Reproductiva">
+        <Link to="/fase_reproductiva">
           <Button variant="dark">Fase Reproductiva</Button>
         </Link>
         <br />
@@ -51,14 +50,16 @@ const opcione: React.FC = () => {
         </Modal.Body>
 
         <Modal.Footer style={{backgroundColor:'#032634'}}>
+        <Link to="/login">
         <Button variant="outline-danger" className="position-absolute top-0 end-0 m-2 p-1"  >
-        <img src={salir} alt="Salir" style={{ width: '20px', height: '20px' }} />
-      </Button>
+        <img src={sali} alt="Salir" style={{ width: '20px', height: '20px' }} />
+      </Button>          
+      </Link>
         </Modal.Footer>
       </Modal.Dialog>
     </div>
     </Container>
-    </Router>
+    
   );
 };
 

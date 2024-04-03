@@ -5,10 +5,10 @@ import { Container, FloatingLabel, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Carousel from 'react-bootstrap/Carousel'
-import bio_vision_logo from '../imagenes/bio_vision_logo.jpg';
 import grow from '../imagenes/grow.jpg';
 import TecNM_logo from '../imagenes/TecNM_logo.png';
 import LabBioFun from '../imagenes/LabBioFun.png'
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
   const { setEmail, setPassword } = useContext(AuthContext); // Obtener funciones de contexto de autenticación
@@ -86,7 +86,9 @@ export const Login = () => {
           onChange={event => setCredenciales({ ...credenciales, password: event.target.value })}
         />
       </FloatingLabel>
+      <Link to="/opciones">
       <Button variant="outline-primary" onClick={handleLogin} className="enviar">Iniciar sesión</Button>
+      </Link>
     </Container>
     
   );

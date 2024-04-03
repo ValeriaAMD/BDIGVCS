@@ -10,6 +10,7 @@ import play from '../imagenes/play.png';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import lampara from '../imagenes/lampara.png'
+import { Link } from 'react-router-dom';
 
 function App() {
   //temperatura
@@ -84,9 +85,11 @@ function App() {
           </Modal.Body>
 
           <Modal.Footer style={{ backgroundColor: '#032634' }}>
+            <Link to="/opciones">
             <Button variant="outline-info" className="position-absolute top-0 end-0 m-2 p-1">
               <img src={casa} alt="casa" style={{ width: '20px', height: '20px' }} /> {/*Boton para volver al menu principal */}
             </Button>
+            </Link>
             <Button variant="outline-success">
               <img src={play} alt="play" style={{ width: '20px', height: '20px' }} /> {/*Boton para aplicar los cambios */}
             </Button>
