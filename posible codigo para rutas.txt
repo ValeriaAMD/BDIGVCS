@@ -1,0 +1,41 @@
+Valores.Modelo.ts
+
+export interface IValors{
+tempmax:number,
+hummax:number
+}
+
+ValoresServicio.tsx
+
+import axios form "axios";
+import {IValors} from "../Modelos/Valores.Modelo";
+
+const urlbase="http://127.0.0.1:8000/api/"
+const endpoint = "update-settings/"
+
+const Actualizar = async (box:IValors)=>{
+	return await axios.post(urlbase+endpoint,box)
+}
+
+Componente.tsx
+export const ActuVal = () =>{
+  const urlx = useNavigate();
+  const [dataVals,setDataVals] = useState<IValors>({
+    tempmax:0,
+    hummax:0
+})
+
+const actuali = ()=>{
+  VAloresServicio.Actializar(dataVals).then(
+	(respuesta) => {
+	 if (respuesta.status == 200){
+	    alert("se actualizaron las variables")
+}
+}
+)
+}
+}
+
+Boton 
+
+onClick={()=>{actuali(); urlx('../')}}

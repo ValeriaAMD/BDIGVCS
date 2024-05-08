@@ -12,26 +12,60 @@ import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 
 function App() {
-  //temperatura
-  const [temperature, setTemperature] = useState(28); // Estado para mantener el valor del número
+  const [temperature, setTemperature] = useState(28);
+  const [humedity, setHumedity] = useState(70);
 
   const increaseTemperature = () => {
-    setTemperature(prevTemperature => prevTemperature + 1); // Incrementa la temperatura en 1
+    setTemperature(prevTemperature => prevTemperature + 1);
   };
 
   const decreaseTemperature = () => {
-    setTemperature(prevTemperature => prevTemperature - 1); // Decrementa la temperatura en 1
+    setTemperature(prevTemperature => prevTemperature - 1);
   };
 
-  //humedad
-  const [humedity, setHumedity] = useState(70); // Estado para mantener el valor del número
-
   const increaseHumedity = () => {
-    setHumedity(prevHumedity => prevHumedity + 1); // Incrementa la humedad en 1
+    setHumedity(prevHumedity => prevHumedity + 1);
   };
 
   const decreaseHumedity = () => {
-    setHumedity(prevHumedity => prevHumedity - 1); // Decrementa la humedad en 1
+    setHumedity(prevHumedity => prevHumedity - 1);
+  };
+
+  const applyChanges = () => {
+    fetch('http://localhost:5000/update-settings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tempmax: temperature,
+        hummax: humedity,
+      }),
+    })
+      .then(response => {
+        if (response.ok) {
+          // Cambios aplicados exitosamente
+          alert('Cambios aplicados correctamente');
+        } else {
+          // Error al aplicar cambios
+          alert('Error al aplicar cambios');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+  const [modoOscuro, setModoOscuro] = useState<boolean>(false);
+
+  const toggleModoOscuro = () => {
+    setModoOscuro(prevModoOscuro => !prevModoOscuro);
+  
+    // Cambiar el tema de la página
+    if (!modoOscuro) {
+      document.body.classList.add('modo-oscuro');
+    } else {
+      document.body.classList.remove('modo-oscuro');
+    }
   };
 
   return (
@@ -46,25 +80,28 @@ function App() {
       <div className="modal" style={{ display: 'block', position: 'initial' }}>
         <Modal.Dialog style={{ marginTop: '10vh' }}>
           <Modal.Header style={{ backgroundColor: '#032634' }}>
-            <Form.Check type="switch" id="modo-oscuro" />
-            <img src={eclipse} alt="Modo oscuro" style={{ width: '20px', height: '20px' }} /> {/*Boton de modo oscuro */}
+          <Form.Check type="switch"
+              id="modo-oscuro"
+              checked={modoOscuro}
+              onChange={toggleModoOscuro} /> 
+            <img src={eclipse} alt="Modo oscuro" style={{ width: '20px', height: '20px' }} /> 
           </Modal.Header>
           <Modal.Body style={{ backgroundColor: '#032634' }}>
             <br />
             <div>
-              <label className="temperature-label">{temperature}°</label> {/* Etiqueta que muestra el valor del número */}
+              <label className="temperature-label">{temperature}°</label>
               <br />
-              <Button variant="secondary" onClick={increaseTemperature}>+</Button> {/* Botón para aumentar el número */}
-              <Button variant="secondary" onClick={decreaseTemperature}>-</Button> {/* Botón para disminuir el número */}
+              <Button variant="secondary" onClick={increaseTemperature}>+</Button>
+              <Button variant="secondary" onClick={decreaseTemperature}>-</Button>
             </div>
             <img src={temperatura} alt="temperatura" style={{ width: '20px', height: '20px' }} />
             <br />
             <br />
             <div>
-              <label className="temperature-label">{humedity}%</label> {/* Etiqueta que muestra el valor del número */}
+              <label className="temperature-label">{humedity}%</label>
               <br />
-              <Button variant="secondary" onClick={increaseHumedity}>+</Button> {/* Botón para aumentar el número */}
-              <Button variant="secondary" onClick={decreaseHumedity}>-</Button> {/* Botón para disminuir el número */}
+              <Button variant="secondary" onClick={increaseHumedity}>+</Button>
+              <Button variant="secondary" onClick={decreaseHumedity}>-</Button>
             </div>
             <img src={humedad} alt="humedad" style={{ width: '20px', height: '20px' }} />
             <br />
@@ -73,12 +110,12 @@ function App() {
 
           <Modal.Footer style={{ backgroundColor: '#032634' }}>
             <Link to="/opciones">
-            <Button variant="outline-info" className="position-absolute top-0 end-0 m-2 p-1">
-              <img src={casa} alt="casa" style={{ width: '20px', height: '20px' }} /> {/*Boton para volver al menu principal */}
-            </Button>
+              <Button variant="outline-info" className="position-absolute top-0 end-0 m-2 p-1">
+                <img src={casa} alt="casa" style={{ width: '20px', height: '20px' }} />
+              </Button>
             </Link>
-            <Button variant="outline-success">
-              <img src={play} alt="play" style={{ width: '20px', height: '20px' }} /> {/*Boton para aplicar los cambios */}
+            <Button variant="outline-success" onClick={applyChanges}>
+              <img src={play} alt="play" style={{ width: '20px', height: '20px' }} />
             </Button>
           </Modal.Footer>
         </Modal.Dialog>

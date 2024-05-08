@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FaseController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParametroController;
+use App\Http\Controllers\ValuesController;
 use App\Models\Parametro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/parametro/{id}',[ParametroController::class,'show']);
-Route::get('/parametro',[ParametroController::class,'show']);
+Route::get('/parametro',[ParametroController::class,'index']);
 Route::get('/fase/{id}',[FaseController::class,'show']);
 Route::get('/fase',[FaseController::class,'show']);
+Route::post('/update-settings', [ValuesController::class, 'update']);

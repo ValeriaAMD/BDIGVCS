@@ -6,6 +6,10 @@
   height: 40vmin;
   pointer-events: none;
 }
+.modo-oscuro {
+  background-color: #000;
+  color: #fff;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

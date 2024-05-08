@@ -41,7 +41,18 @@ function App() {
   const stayOn = () => {
     setOn(prevOn => (prevOn === 'On' ? 'Off' : 'On')); // Cambia entre "On" y "Off"
   };
+  const [modoOscuro, setModoOscuro] = useState<boolean>(false);
 
+  const toggleModoOscuro = () => {
+    setModoOscuro(prevModoOscuro => !prevModoOscuro);
+  
+    // Cambiar el tema de la página
+    if (!modoOscuro) {
+      document.body.classList.add('modo-oscuro');
+    } else {
+      document.body.classList.remove('modo-oscuro');
+    }
+  };
   return (
     <Container>
       <br />
@@ -54,7 +65,10 @@ function App() {
       <div className="modal" style={{ display: 'block', position: 'initial' }}>
         <Modal.Dialog style={{ marginTop: '10vh' }}>
           <Modal.Header style={{ backgroundColor: '#032634' }}>
-            <Form.Check type="switch" id="modo-oscuro" />
+            <Form.Check type="switch"
+              id="modo-oscuro"
+              checked={modoOscuro}
+              onChange={toggleModoOscuro} />
             <img src={eclipse} alt="Modo oscuro" style={{ width: '20px', height: '20px' }} /> {/*Boton de modo oscuro */}
           </Modal.Header>
           <Modal.Body style={{ backgroundColor: '#032634' }}>
