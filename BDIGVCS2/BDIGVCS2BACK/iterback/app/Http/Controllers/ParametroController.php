@@ -13,10 +13,17 @@ class ParametroController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $param = Parametro::all();
-        return response()->json($param,200);
+        // Obtener las fechas proporcionadas por el usuario desde la solicitud
+        $fechaInicio = $request->input('fecha_inicio');
+        $fechaFin = $request->input('fecha_fin');
+
+        // Filtrar los datos por el rango de fechas especificado
+        $parametros = Parametro::whereBetween('dia', [$fechaInicio, $fechaFin])->get();
+
+        // Retornar los datos filtrados
+        return response()->json($parametros);
     }
 
     /**

@@ -13,33 +13,48 @@ import lampara from '../imagenes/lampara.png'
 import { Link } from 'react-router-dom';
 
 function App() {
-  //temperatura
-  const [temperature, setTemperature] = useState(25); // Estado para mantener el valor del número
+  const [temperature, setTemperature] = useState(28);
+  const [humedity, setHumedity] = useState(70);
 
   const increaseTemperature = () => {
-    setTemperature(prevTemperature => prevTemperature + 1); // Incrementa la temperatura en 1
+    setTemperature(prevTemperature => prevTemperature + 1);
   };
 
   const decreaseTemperature = () => {
-    setTemperature(prevTemperature => prevTemperature - 1); // Decrementa la temperatura en 1
+    setTemperature(prevTemperature => prevTemperature - 1);
   };
 
-  //humedad
-  const [humedity, setHumedity] = useState(80); // Estado para mantener el valor del número
-
   const increaseHumedity = () => {
-    setHumedity(prevHumedity => prevHumedity + 1); // Incrementa la humedad en 1
+    setHumedity(prevHumedity => prevHumedity + 1);
   };
 
   const decreaseHumedity = () => {
-    setHumedity(prevHumedity => prevHumedity - 1); // Decrementa la humedad en 1
+    setHumedity(prevHumedity => prevHumedity - 1);
   };
 
-  //iluminacion 
-  const [on, setOn] = useState('On'); // Estado para mantener el estado de encendido 
-
-  const stayOn = () => {
-    setOn(prevOn => (prevOn === 'On' ? 'Off' : 'On')); // Cambia entre "On" y "Off"
+  const applyChanges = () => {
+    fetch('http://192.168.0.10:5000/update-settings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tempmax: temperature,
+        hummax: humedity,
+      }),
+    })
+      .then(response => {
+        if (response.ok) {
+          // Cambios aplicados exitosamente
+          alert('Cambios aplicados correctamente');
+        } else {
+          // Error al aplicar cambios
+          alert('Error al aplicar cambios');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
   const [modoOscuro, setModoOscuro] = useState<boolean>(false);
 
@@ -53,6 +68,15 @@ function App() {
       document.body.classList.remove('modo-oscuro');
     }
   };
+
+
+  //iluminacion 
+  const [on, setOn] = useState('On'); // Estado para mantener el estado de encendido 
+
+  const stayOn = () => {
+    setOn(prevOn => (prevOn === 'On' ? 'Off' : 'On')); // Cambia entre "On" y "Off"
+  };
+ 
   return (
     <Container>
       <br />
@@ -104,8 +128,8 @@ function App() {
               <img src={casa} alt="casa" style={{ width: '20px', height: '20px' }} /> {/*Boton para volver al menu principal */}
             </Button>
             </Link>
-            <Button variant="outline-success">
-              <img src={play} alt="play" style={{ width: '20px', height: '20px' }} /> {/*Boton para aplicar los cambios */}
+            <Button variant="outline-success" onClick={applyChanges}>
+              <img src={play} alt="play" style={{ width: '20px', height: '20px' }} />
             </Button>
           </Modal.Footer>
         </Modal.Dialog>

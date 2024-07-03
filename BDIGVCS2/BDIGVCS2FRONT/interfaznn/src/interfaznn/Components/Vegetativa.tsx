@@ -32,7 +32,7 @@ function App() {
   };
 
   const applyChanges = () => {
-    fetch('http://localhost:5000/update-settings', {
+    fetch('http://10.10.49.120:5000/update-settings', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
